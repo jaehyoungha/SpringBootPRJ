@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "=//mybatis.org//DTO Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="kopo.poly.persistance.mapper.INoticeMapper"> <!--이걸 써야만 매핑이 되서 xml문과 자바문이 묶일수 없는데 이 구문이 묶는 역할을 해줌-->
+    <insert id="InsertNoticeInfo" parameterType="NoticeDTO"> <!--얘는 항상 InoticeMapper안에 있는 InsertNoticeInfo와 동일해야함 즉 id가 함수명 parameterType가 파라미터가 됨-->
+        Insert into notice
+            (
+                NOTICE_SEQ , TITLE , CONTENTS , REG_ID
+            )
+        values
+        (
+            NOTICE_SEQ.NEXTVAL,#{title},#{contents},#{reg_id} <!--문자열 varchhar2를 사용하려면 문자열이니 ""를 붙어야 하지만 #을 사용하면 된다.-->
+            <!--성공하면 1 실패하면 0 을 반환  그래서 컨트롤러에 if문 보면 res가 1이면 성공 아니면 실패 라고 출력할수 있는것!-->
+        )
+    </insert>
+    <select id="getNoticeList" resultType="NoticeDTO">
+        select *
+        from notice
+
+    </select>
+    <select id="getNoticeDetail" resultType="NoticeDTO" parameterType="NoticeDTO">
+        select *
+        from notice
+        where notice_seq = #{notice_seq}
+        order by notice_seq = #{notice_seq}
+    </select>
+    <delete id="noticeDelete" parameterType="NoticeDTO">
+        delete from notice
+        where notice_seq = #{notice_seq}
+    </delete>
+</mapper>    

@@ -2,7 +2,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     String title = CmmUtil.nvl(request.getParameter("title"));
-    String nickname = CmmUtil.nvl(request.getParameter("nickname"));
+    String reg_id = CmmUtil.nvl(request.getParameter("reg_id"));
     String contents = CmmUtil.nvl(request.getParameter("contents"));
 
 %>
@@ -26,7 +26,7 @@
 </div>
 <div class="form-group">
     <lable>java로 부터 받은 닉네임</lable>
-    <input name="nickname" type="text" class="form-control" value ="<%=nickname%>"/>
+    <input name="reg_id" type="text" class="form-control" value ="<%=reg_id%>"/>
 </div>
 <div class="form-group">
     <label>java로 부터 받은 게시판 내용</label>
