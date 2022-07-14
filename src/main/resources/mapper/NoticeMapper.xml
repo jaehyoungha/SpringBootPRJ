@@ -23,10 +23,16 @@
         select *
         from notice
         where notice_seq = #{notice_seq}
-        order by notice_seq = #{notice_seq}
+        order by notice_seq asc
     </select>
     <delete id="noticeDelete" parameterType="NoticeDTO">
         delete from notice
         where notice_seq = #{notice_seq}
     </delete>
+    <update id="noticeUpdate" parameterType="NoticeDTO">
+    update notice set
+        title = #{title}, contents =#{contents}
+
+       where notice_seq = #{notice_seq}
+    </update>
 </mapper>    

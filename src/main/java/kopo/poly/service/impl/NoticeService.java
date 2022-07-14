@@ -23,7 +23,6 @@ public class NoticeService implements INoticeService {
 
     @Override
     public int InsertNoticeInfo(NoticeDTO pDTO) throws Exception {
-
         log.info(this.getClass().getName() + "InsertNoticeInfo start !!");
         int res = noticeMapper.InsertNoticeInfo(pDTO);
         log.info(this.getClass().getName() + "InsertNoticeInfo end !!");
@@ -49,6 +48,12 @@ public class NoticeService implements INoticeService {
         log.info(this.getClass().getName() + ".noticeDelete ServiceStart !!");
         int res = noticeMapper.noticeDelete(nDTO);
         log.info(this.getClass().getName() + ".noticeDelete Service End !!");
+        return res;
+    }
+
+    @Override
+    public int noticeUpdate(NoticeDTO nDTO) throws Exception {
+        int res = noticeMapper.noticeUpdate(nDTO);
         return res;
     }
 

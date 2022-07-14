@@ -150,4 +150,43 @@ public class NoticeController {
         model.addAttribute("url",url);
         return "Redirect";
     }
+    @GetMapping(value = "NoticeUpdate")
+    public String NoticeUpdate(HttpServletRequest request, Model model) throws Exception {
+        String Notice_seq = request.getParameter("no");
+        log.info(Notice_seq);
+
+        model.addAttribute("Notice",Notice_seq);
+        return "editform";
+    }
+    @GetMapping(value = "DoNoticeUpdate")
+    public String DoNoticeUpdate(HttpServletRequest request,Model model) throws Exception {
+        String title = request.getParameter("title");
+        String contents = request.getParameter("contents");
+        String notice_seq = request.getParameter("notice_seq");
+
+        log.info("받아온 번호 :" +notice_seq);
+        log.info("받아온 제목 :" +title);
+        log.info("받아온 내용 :" +contents);
+
+        NoticeDTO nDTO = new NoticeDTO();
+        nDTO.setNotice_seq(notice_seq);
+        nDTO.setTitle(title);
+        nDTO.setContents(contents);
+
+        int res = noticeService.noticeUpdate(nDTO);
+
+        String msg;
+        String url;
+        if (res == 1) {
+            msg = " 수정 성공 !!";
+            url = "getNoticeList";
+        } else {
+            msg = "수정 실패 !!";
+            url = "getNoticeList";
+        }
+        model.addAttribute("msg",msg);
+        model.addAttribute("url",url);
+
+        return "Redirect";
+    }
 }
